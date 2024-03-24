@@ -1,0 +1,21 @@
+Para ejecutar el pryecto en Expo es necesario instalar la aplicación Expo Go en el celular.
+
+Al ejecutar el comando npx expo star, en la terminal, aparece un codigo QR que al escanearse debe llevar
+a la aplicación anteriormente mencionada.
+
+Librerías a instalar:
+
+        Librerías del navigator
+1. npm install @react-navigation/native
+2. npm install @react-navigation/stack
+3. npx expo install react-native-gesture-handler
+4. npx expo install @react-native-masked-view/masked-view
+5. npm install @react-navigation/native-stack
+
+        Librería de react-native paper
+1. npm install react-native-paper
+2. npm install react-native-safe-area-context
+3. npm install react-native-vector-icons
+
+1. npm install react-native-elements
+2. npm install react-native-snap-carousel
