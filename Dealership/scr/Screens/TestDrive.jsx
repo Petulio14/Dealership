@@ -11,11 +11,11 @@ function TestDrive ({navigation}){
     <ScrollView>
             
         <View style={{ flex: 1, justifyContent: 'flex-star' }}>
-          <Text style={styles.subHeader}>CONSESIONARIOS AUTOSTOP</Text>
+          <Text style={styles.subHeader}>CONCESIONARIO SW 5</Text>
          </View>
 
          <View style={{justifyContent:'center'}}>
-            <Image source={require('./Images/testdrive.jpeg')} style ={{resizeMode:'contain', width: 400, height: 200}}></Image>
+            <Image source={require('./Images/TestDrive.png')} style ={{resizeMode:'contain', width: 400, height: 200}}></Image>
          </View>
 
         <Text style ={styles.hole} />
