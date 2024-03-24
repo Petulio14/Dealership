@@ -14,6 +14,13 @@ Librerías a instalar:
 
 _______________________________________________
 
+--> Direccion del proyecto
+
+Dealership\Dealership
+
+1. cd Dealership
+_______________________________________________
+
 --> Para ejecutar el pryecto en Expo es necesario instalar la aplicación Expo Go en el celular.
 
 Al ejecutar el comando npx expo start, en la terminal, aparece un codigo QR que al escanearse debe llevar
