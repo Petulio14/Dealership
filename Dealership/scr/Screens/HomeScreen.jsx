@@ -44,6 +44,32 @@ const HomeScreen = ({navigation}) =>{
           </Button>
         </View>
 
+        <Text style ={styles.hole} />
+
+        <View style={{ flex: 3, alignItems: 'center', justifyContent: 'flex-end' }}>
+          <Button icon='information-outline' mode="contained" buttonColor='red' onPress={() => navigation.navigate('DETALLES')} >
+            <Text >DETALLE DEL VEHICULO</Text>
+          </Button>
+        </View>
+
+        <Text style ={styles.hole} />
+
+        <View style={{ flex: 3, alignItems: 'center', justifyContent: 'flex-end' }}>
+          <Button icon='car-traction-control' mode="contained" buttonColor='red' onPress={() => navigation.navigate('PRUEBA DE MANEJO')} >
+            <Text >FORMULARIO PRUEBA DE MANEJO</Text>
+          </Button>
+        </View>
+
+        <Text style ={styles.hole} />
+
+        <View style={{ flex: 3, alignItems: 'center', justifyContent: 'flex-end' }}>
+          <Button icon='alert-circle-outline' mode="contained" buttonColor='red' onPress={() => navigation.navigate('NOTIFICACIONES')} >
+            <Text >NOTIFICACIONES</Text>
+          </Button>
+        </View>
+
+        <Text style ={styles.hole} />
+        
         </SafeAreaView>
       </ScrollView>
 

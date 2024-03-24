@@ -19,7 +19,7 @@ _______________________________________________
 Al ejecutar el comando npx expo start, en la terminal, aparece un codigo QR que al escanearse debe llevar
 a la aplicación anteriormente mencionada.
 
-1. npx expo install
+1. npx expo install o npx install-expo-modules@latest
 2. npx expo start
 
 _______________________________________________

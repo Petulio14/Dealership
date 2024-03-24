@@ -1,5 +1,6 @@
 import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
+import { Button } from 'react-native-paper'
 
 const vehicle = ({imageUrl, description, price}) => {
   return (
@@ -12,7 +13,7 @@ const vehicle = ({imageUrl, description, price}) => {
         style={styles.descrption}>{description}</Text>
         <Text
         style={styles.price}>$ {price}</Text>
-      
+
     </View>
   )
 }

@@ -7,6 +7,10 @@ import Catalogue from './scr/Screens/CatalogueScreen';
 import TechnicalScreen from './scr/Screens/TechnicalScreen';
 import CustomerSupport from './scr/Screens/CustomerSupport';
 import ServicesHistory from './scr/Screens/ServicesHistory';
+import CarDetails from './scr/Screens/CarDetails';
+import TestDrive from './scr/Screens/TestDrive';
+import Notification from './scr/Screens/Notification';
+
 
 
 
@@ -21,6 +25,10 @@ export default function App() {
         <Stack.Screen name="TECNICO"   component={TechnicalScreen} />
         <Stack.Screen name ="ASESORIA" component={CustomerSupport} />
         <Stack.Screen name="HISTORIAL" component={ServicesHistory}/>
+        <Stack.Screen name="DETALLES" component={CarDetails}/>
+        <Stack.Screen name="PRUEBA DE MANEJO" component={TestDrive}/>
+        <Stack.Screen name="NOTIFICACIONES" component={Notification}/>
+       
              
       </Stack.Navigator>
     </NavigationContainer>
