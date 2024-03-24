@@ -12,11 +12,11 @@ function TechnicalScreen ({navigation}){
     <SafeAreaView>
         <ScrollView>
             <View style={{ flex: 1, justifyContent: 'flex-star' }}>
-                <Text style={styles.subHeader}>CONSESIONARIOS AUTOSTOP</Text>
+                <Text style={styles.subHeader}>CONCESIONARIO SW 5</Text>
             </View>
 
             <View style={{justifyContent:'center'}}>
-             <Image source={require('./Images/mecanico.png')} style ={{resizeMode:'center', width: 400, height: 200}}></Image>
+             <Image source={require('./Images/mechanic.png')} style ={{resizeMode:'center', width: 400, height: 200}}></Image>
             </View>
 
             <Text style ={styles.hole} />

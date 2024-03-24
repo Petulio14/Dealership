@@ -11,7 +11,7 @@ function CustomerSupport ({navigation}){
     <ScrollView>
             
         <View style={{ flex: 1, justifyContent: 'flex-star' }}>
-          <Text style={styles.subHeader}>CONSESIONARIOS AUTOSTOP</Text>
+          <Text style={styles.subHeader}>CONCESIONARIO SW 5</Text>
          </View>
 
          <View style={{justifyContent:'center'}}>

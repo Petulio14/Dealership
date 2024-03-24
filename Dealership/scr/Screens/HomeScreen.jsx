@@ -7,11 +7,11 @@ const HomeScreen = ({navigation}) =>{
     <ScrollView style={{backgroundColor:'#fcfcfc'}}>
       <SafeAreaView>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'star' }}>
-          <Text style={styles.subHeader}>CONSESIONARIOS AUTOSTOP</Text>
+          <Text style={styles.subHeader}>CONCESIONARIO SW 5</Text>
         </View>
         
         <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
-          <Image source={require('./Images/logo-autostop.png')} style ={{width: 320,height: 440,borderRadius: 18, resizeMode: 'center'}}/>
+          <Image source={require('./Images/Logo.png')} style ={{width: 320,height: 440,borderRadius: 18, resizeMode: 'center'}}/>
         </View>
 
         <View style={{ flex: 3, alignItems: 'center', justifyContent: 'flex-end' }}>
