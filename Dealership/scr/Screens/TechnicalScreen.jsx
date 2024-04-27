@@ -1,85 +1,122 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextInput } from "react-native-paper";
-import { View, Text, StyleSheet, ScrollView, Image, SafeAreaView, } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image, SafeAreaView } from "react-native";
 import { Button } from "react-native-paper";
+import { getDatabase, ref, push, set } from "firebase/database";
+import { app } from "../../firebaseConfig";
 
 function TechnicalScreen ({navigation}){
-    const [text, SetText] = React.useState('');
-    const [number, onChangeNumber] = React.useState('');
+    const [name, setName] = useState('');
+    const [idNumber, setIdNumber] = useState('');
+    const [vehiclePlate, setVehiclePlate] = useState('');
 
-   
+    const sendData = () => {
+        if (name === '') {
+            alert('Por favor, ingresa tu nombre.');
+            return;
+        }
+        if (idNumber === '') {
+            alert('Por favor, ingresa tu número de cédula.');
+            return;
+        }
+        if (vehiclePlate === '') {
+            alert('Por favor, ingresa la placa del vehículo.');
+            return;
+        }
+
+        const database = getDatabase(app); 
+
+        const newTechnicalRef = push(ref(database, "technical_support"));
+        set(newTechnicalRef, {
+            name: name,
+            idNumber: idNumber,
+            vehiclePlate: vehiclePlate,
+        })
+        .then(() => {
+            alert('¡Datos enviados exitosamente!');
+            setName('');
+            setIdNumber('');
+            setVehiclePlate('');
+            navigation.navigate('INICIO');
+        })
+        .catch(error => {
+            console.error('Error al enviar los datos:', error);
+            alert('Ocurrió un error al enviar los datos. Por favor, inténtalo de nuevo.');
+        });
+    };
+
     return( 
-    <SafeAreaView>
-        <ScrollView>
-            <View style={{ flex: 1, justifyContent: 'flex-star' }}>
-                <Text style={styles.subHeader}>CONCESIONARIO SW 5</Text>
-            </View>
+        <SafeAreaView>
+            <ScrollView>
+                <View style={{ flex: 1, justifyContent: 'flex-start' }}>
+                    <Text style={styles.subHeader}>CONCESIONARIO SW 5</Text>
+                </View>
 
-            <View style={{justifyContent:'center'}}>
-             <Image source={require('./Images/mechanic.png')} style ={{resizeMode:'center', width: 400, height: 200}}></Image>
-            </View>
+                <View style={{justifyContent:'center'}}>
+                    <Image source={require('./Images/mechanic.png')} style={{resizeMode:'center', width: 400, height: 200}} />
+                </View>
 
-            <Text style ={styles.hole} />
+                <Text style={styles.space} />
 
-            <Text style = {{textAlign: 'center', fontSize: 14}}>Aquí puede solicitar una cita con nuestros mecanicos para el mantenimiento de su vehículo</Text>
+                <Text style={{textAlign: 'center', fontSize: 14}}>Aquí puede solicitar una cita con nuestros mecánicos para el mantenimiento de su vehículo</Text>
 
-            <Text style ={styles.hole} />
+                <Text style={styles.space} />
 
-            <Text style = {{textAlign: 'center', fontSize: 16}}>FORMULARIO</Text>
-            
-            <Text style ={styles.hole} />
+                <Text style={{textAlign: 'center', fontSize: 16}}>FORMULARIO</Text>
+                
+                <Text style={styles.space} />
 
-            <TextInput
-                value={text}
-                onChangeText={text =>SetText(text)}
-                placeholder="Nombre completo"
-            /> 
-            <Text style ={styles.hole} /> 
-    
-            <TextInput 
-                onChangeText={onChangeNumber} 
-                placeholder="Número de cédula" 
-                keyboardType="numeric"/>
-            
-            <Text style ={styles.hole} /> 
-            
-            <TextInput
-                placeholder="Placa del vehículo" 
-                value={text}
-                onChangeText={text =>SetText(text)}
-            />  
+                <TextInput
+                    value={name}
+                    onChangeText={text => setName(text)}
+                    placeholder="Nombre completo"
+                    maxLength={100}
+                /> 
+                <Text style={styles.space} /> 
+        
+                <TextInput 
+                    value={idNumber}
+                    onChangeText={text => setIdNumber(text)} 
+                    placeholder="Número de cédula" 
+                    keyboardType="numeric"
+                    maxLength={12}
+                />
+                
+                <Text style={styles.space} /> 
+                
+                <TextInput
+                    value={vehiclePlate}
+                    onChangeText={text => setVehiclePlate(text)}
+                    placeholder="Placa del vehículo" 
+                    maxLength={10}
+                />  
 
-             <Text style ={styles.hole} />   
+                <Text style={styles.space} />   
 
+                <View style={{ flex: 3, alignItems: 'center', justifyContent: 'flex-end' }}>
+                    <Button icon='send' mode="contained" color='red' onPress={sendData} >
+                        <Text>Enviar</Text>
+                    </Button>
+                </View>
 
-            <View style={{ flex: 3, alignItems: 'center', justifyContent: 'flex-end' }}>
-                <Button icon='send' mode="contained" buttonColor='red' onPress={() => navigation.navigate('INICIO')} >
-                <Text >Enviar</Text>
-                </Button>
-            </View>
-
-        </ScrollView>
-    </SafeAreaView>
-             
+            </ScrollView>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
     subHeader: {
-      fontSize: 23,
-      backgroundColor : "#ff0a0a",
-      color : "white",
-      textAlign : "center",
-      paddingVertical : 10,
-      marginBottom : 10,
-      paddingHorizontal: 106,
-      
+        fontSize: 23,
+        backgroundColor: "#ff0a0a",
+        color: "white",
+        textAlign: "center",
+        paddingVertical: 10,
+        marginBottom: 10,
+        paddingHorizontal: 106,
     },
-    hole: {
+    space: {
         paddingVertical: 13
-
     },
-    
-  });
+});
 
-export default TechnicalScreen
+export default TechnicalScreen;
