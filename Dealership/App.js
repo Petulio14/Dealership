@@ -10,6 +10,8 @@ import ServicesHistory from './scr/Screens/ServicesHistory';
 import CarDetails from './scr/Screens/CarDetails';
 import TestDrive from './scr/Screens/TestDrive';
 import Notification from './scr/Screens/Notification';
+import ReportScreen from './scr/Screens/ReportScreen';
+import DetailsScreen from './scr/Screens/DetailsScreen';
 
 
 
@@ -28,8 +30,12 @@ export default function App() {
         <Stack.Screen name="DETALLES" component={CarDetails}/>
         <Stack.Screen name="PRUEBA DE MANEJO" component={TestDrive}/>
         <Stack.Screen name="NOTIFICACIONES" component={Notification}/>
-       
-             
+        <Stack.Screen name="REPORTES" component={ReportScreen} />
+        <Stack.Screen
+          name="LIST"
+          component={DetailsScreen}
+          options={({ route }) => ({ title: `Lista de ${route.params.dataType}` })}
+        />   
       </Stack.Navigator>
     </NavigationContainer>
    

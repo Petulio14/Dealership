@@ -69,6 +69,13 @@ const HomeScreen = ({navigation}) =>{
         </View>
 
         <Text style ={styles.hole} />
+
+        <View style={{ flex: 3, alignItems: 'center', justifyContent: 'flex-end' }}>
+          <Button icon='archive' mode="contained" buttonColor='red' onPress={() => navigation.navigate('REPORTES')} >
+            <Text >Informes</Text>
+          </Button>
+        </View>
+        <Text style ={styles.hole} />
         
         </SafeAreaView>
       </ScrollView>

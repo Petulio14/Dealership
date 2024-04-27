@@ -20,6 +20,11 @@ Dealership\Dealership
 
 1. cd Dealership
 _______________________________________________
+--> instalar la BD
+
+ejecutar la siguiente linea
+1. npm install firebase
+_______________________________________________
 
 --> Para ejecutar el pryecto en Expo es necesario instalar la aplicación Expo Go en el celular.
 
