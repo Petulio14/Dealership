@@ -1,7 +1,8 @@
-import { initializeApp } from 'firebase/app';
-import { getDatabase } from 'firebase/database';
 
-const firebaseConfig = {
+import { initializeApp } from 'firebase/app';
+import { getStorage } from "firebase/storage"; 
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
+export const firebaseConfig = {
   apiKey: "AIzaSyCLuBLhuc_VG1C2B6k529P2-sjICWCM2P8",
   authDomain: "appconcesionario-adca5.firebaseapp.com",
   projectId: "appconcesionario-adca5",
@@ -11,4 +12,8 @@ const firebaseConfig = {
 };
 
 
-  export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
+export { app,db,storage };
+
