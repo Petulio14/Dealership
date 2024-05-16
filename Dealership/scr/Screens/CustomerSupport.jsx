@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TextInput } from "react-native-paper";
 import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
 import { Button } from "react-native-paper";
 import { getDatabase, ref, push, set } from "firebase/database";
-import { app } from "../../firebaseConfig";
-
+import { app, storage } from "../../firebaseConfig";
+import { ref as sRef,getDownloadURL } from "firebase/storage"; 
 function CustomerSupport ({navigation}){
     const [name, setName] = useState('');
     const [idNumber, setIdNumber] = useState('');
     const [vehiclePlate, setVehiclePlate] = useState('');
-   
+    const [imageUrl, setImageUrl] = useState(null);
+
+    useEffect(() => {
+        const loadImageFromFirebase = async () => {
+          try {
+            const pathReference = sRef(storage, 'imagenes/atencion-cliente.jpg'); 
+            const url = await getDownloadURL(pathReference); 
+            setImageUrl(url); 
+          } catch (error) {
+            console.log('Error displaying the image from firesotre:', error);
+          }
+        };
+    
+        loadImageFromFirebase();
+      }, []);
+
     const sendData = () => {
         if (name === '') {
             alert('Por favor, ingresa tu nombre.');
@@ -52,7 +67,7 @@ function CustomerSupport ({navigation}){
             </View>
 
             <View style={{justifyContent:'center'}}>
-                <Image source={require('./Images/atencion-cliente.jpg')} style ={{resizeMode:'contain', width: 400, height: 200}} />
+                <Image source={{ uri: imageUrl }} style ={{resizeMode:'contain', width: 400, height: 200}} />
             </View>
 
             <Text style={styles.space} />

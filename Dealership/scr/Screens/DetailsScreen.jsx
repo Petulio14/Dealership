@@ -21,7 +21,6 @@ const DetailsScreen = ({ route }) => {
     });
 
     return () => {
-      // Clean up any listeners or resources here
     };
   }, [dataType]);
 

@@ -1,29 +1,43 @@
-import React from 'react'
-import VehicleList from './VehicleList'
+import React, { useState, useEffect } from 'react';
+import VehicleList from './VehicleList';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebaseConfig';
 
 const Catalogue = () => {
-  const vehicles =[
-    {
-      id: 1,
-      imageUrl: 'https://cdn.group.renault.com/ren/co/vehicles/logan/design/exterior/logan-lateral-exterior.jpg.ximg.xsmall.jpg/210c18118f.jpg',
-      description: 'Renoult Logan',
-      price: 25000000,
-    },
-    {
-      id: 2,
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/07/00-02_Mazda_626_LX.jpg',
-      description: 'Mazda 626',
-      price: 15000000,
-    },
-    {
-      id: 3,
-      imageUrl: 'https://www.chevrolet.com.co/content/dam/chevrolet/south-america/colombia/espanol/index/cars/2018-camaro/04-images/negro-camaro-six-ss-2018.jpg?imwidth=960',
-      description: 'chevrolet camaro',
-      price: 25000000,
-    },
-  ]
+  const [vehicles, setVehicles] = useState([]);
 
-  return <VehicleList vehicles={vehicles}/>
-}
+  const getVehicleData = async () => {
+    const vehiclesCollection = collection(db, 'vehicles_list');
+    const querySnapshot = await getDocs(vehiclesCollection);
+  
+    const vehicles = [];
+    querySnapshot.forEach((doc) => {
+      const vehicleData = doc.data();
+      vehicles.push({
+        id: doc.id,
+        imageUrl: vehicleData.imageUrl,
+        description: vehicleData.description,
+        price: vehicleData.price
+      });
+    });
+  
+    return vehicles;
+  };
+  
+  useEffect(() => {
+    const fetchVehicles = async () => {
+      try {
+        const vehicleData = await getVehicleData();
+        setVehicles(vehicleData);
+      } catch (error) {
+        console.error('Error fetching vehicles:', error);
+      }
+    };
 
-export default Catalogue
+    fetchVehicles();
+  }, []);
+
+  return <VehicleList vehicles={vehicles} />;
+};
+
+export default Catalogue;

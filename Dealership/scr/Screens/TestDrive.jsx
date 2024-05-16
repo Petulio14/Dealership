@@ -1,15 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextInput } from "react-native-paper";
 import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
 import { Button } from "react-native-paper";
 import { getDatabase, ref, push, set } from "firebase/database";
-import { app } from "../../firebaseConfig";
-
+import { app,storage } from "../../firebaseConfig";
+import { ref as sRef,getDownloadURL } from "firebase/storage"; 
 function TestDrive({ navigation }) {
   const [name, setName] = useState("");
   const [idNumber, setIdNumber] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [imageUrl, setImageUrl] = useState(null);
 
+    useEffect(() => {
+        const loadImageFromFirebase = async () => {
+          try {
+            const pathReference = sRef(storage, 'imagenes/TestDrive.png'); 
+            const url = await getDownloadURL(pathReference); 
+            setImageUrl(url); 
+          } catch (error) {
+            console.log('Error displaying the image from firesotre:', error);
+          }
+        };
+    
+        loadImageFromFirebase();
+      }, []);
   const sendData = () => {
     if (name === "") {
       alert("Por favor, ingresa tu nombre.");
@@ -55,7 +69,7 @@ function TestDrive({ navigation }) {
 
       <View style={{ justifyContent: "center" }}>
         <Image
-          source={require("./Images/TestDrive.png")}
+          source={{ uri: imageUrl }}
           style={{ resizeMode: "contain", width: 400, height: 200 }}
         />
       </View>

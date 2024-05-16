@@ -1,14 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextInput } from "react-native-paper";
 import { View, Text, StyleSheet, ScrollView, Image, SafeAreaView } from "react-native";
 import { Button } from "react-native-paper";
-import { getDatabase, ref, push, set } from "firebase/database";
-import { app } from "../../firebaseConfig";
+import { getDatabase, push, set } from "firebase/database";
+import { app, storage } from "../../firebaseConfig";
+import { ref, getDownloadURL } from "firebase/storage"; 
 
 function TechnicalScreen ({navigation}){
+    const [imageUrl, setImageUrl] = useState(null);
     const [name, setName] = useState('');
     const [idNumber, setIdNumber] = useState('');
     const [vehiclePlate, setVehiclePlate] = useState('');
+    
+    useEffect(() => {
+        const loadImageFromFirebase = async () => {
+          try {
+            const pathReference = ref(storage, 'imagenes/mechanic.png'); 
+            const url = await getDownloadURL(pathReference); 
+            setImageUrl(url); 
+          } catch (error) {
+            console.log('Error displaying the image from firesotre:', error);
+          }
+        };
+    
+        loadImageFromFirebase();
+      }, []);
 
     const sendData = () => {
         if (name === '') {
@@ -53,7 +69,7 @@ function TechnicalScreen ({navigation}){
                 </View>
 
                 <View style={{justifyContent:'center'}}>
-                    <Image source={require('./Images/mechanic.png')} style={{resizeMode:'center', width: 400, height: 200}} />
+                    <Image source={{ uri: imageUrl }} style={{resizeMode:'center', width: 400, height: 200}} />
                 </View>
 
                 <Text style={styles.space} />
