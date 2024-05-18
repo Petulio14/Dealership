@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { TextInput } from "react-native-paper";
 import { View, Text, StyleSheet, ScrollView, Image, SafeAreaView } from "react-native";
 import { Button } from "react-native-paper";
-import { getDatabase, push, set } from "firebase/database";
+import { getDatabase, push, ref, set } from "firebase/database";
 import { app, storage } from "../../firebaseConfig";
-import { ref, getDownloadURL } from "firebase/storage"; 
+import { ref as sRef, getDownloadURL } from "firebase/storage"; 
 
 function TechnicalScreen ({navigation}){
     const [imageUrl, setImageUrl] = useState(null);
@@ -15,7 +15,7 @@ function TechnicalScreen ({navigation}){
     useEffect(() => {
         const loadImageFromFirebase = async () => {
           try {
-            const pathReference = ref(storage, 'imagenes/mechanic.png'); 
+            const pathReference = sRef(storage, 'imagenes/mechanic.png'); 
             const url = await getDownloadURL(pathReference); 
             setImageUrl(url); 
           } catch (error) {
