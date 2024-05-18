@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import VehicleList from './VehicleList';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
+import FirebaseContext from '../context/firebase/firebaseContext';
+import vehiclesContext from '../context/vehicles/pedidos/vehiclesContext';
 
 const Catalogue = () => {
   const [vehicles, setVehicles] = useState([]);
+ const {menu, obtenerProductos} = useContext(FirebaseContext)
 
   const getVehicleData = async () => {
     const vehiclesCollection = collection(db, 'vehicles_list');
