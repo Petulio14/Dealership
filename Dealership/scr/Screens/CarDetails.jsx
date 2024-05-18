@@ -24,7 +24,7 @@ const CarDetails = () => {
     <View style={{ flex: 1, alignItems: 'center' }}>
         <Image source={{ uri: imageUrl }} style ={{width: 320,height: 440,borderRadius: 18, resizeMode: 'center'}}/>
         
-        <Text> Descripcion complenta </Text>
+        <Text> Descripcion completa </Text>
     </View>
   )
 }
